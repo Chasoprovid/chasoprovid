@@ -83,19 +83,20 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
+      border: 1px solid gray;
       display: flex;
       justify-content: center;
       gap: 18px;
       padding: 12px 20px;
       border-radius: 20px;
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(4px);
       box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
 
     .dock-item {
       position: relative;
-      width: 44px;
+      width: clamp(7px, 8.5vw, 42px);
       aspect-ratio: 1/1;
       cursor: pointer;
       transition: transform 0.2s ease;
@@ -104,7 +105,7 @@
     .dock-item img {
       width: 100%;
       height: 100%;
-      border-radius: 8px;
+      border-radius: 4px;
       transition: transform 0.2s ease;
     }
 
@@ -115,7 +116,7 @@
     .dock-item .label {
       display: none;
       position: absolute;
-      top: -22px;
+      top: -26px;
       left: 50%;
       transform: translateX(-50%);
       font-size: 12px;
