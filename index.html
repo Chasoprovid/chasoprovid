@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <!-- Заборона масштабування на телефоні -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Портфоліо — Вадим Галущак</title>
+  <title>Портфоліо</title>
   <style>
     body {
       margin: 0;
@@ -45,6 +45,7 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      pointer-events: none;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       transition: transform 0.2s ease;
@@ -96,7 +97,7 @@
 
     .dock-item {
       position: relative;
-      width: clamp(7px, 8.5vw, 42px);
+      width: clamp(7px, 8.5vw, 45px);
       aspect-ratio: 1/1;
       cursor: pointer;
       transition: transform 0.2s ease;
@@ -121,7 +122,7 @@
       transform: translateX(-50%);
       font-size: 12px;
       background: rgba(0,0,0,0.7);
-      padding: 2px 6px;
+      padding: 2px 2px;
       border-radius: 4px;
       white-space: nowrap;
       color: #fff;
@@ -131,106 +132,266 @@
       display: block;
     }
 
-    .window {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0.5);
-      width: 90%;
-      max-width: 500px;
-      height: 400px;
-      background: #f0f0f0;
-      color: #000;
-      border-radius: 12px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      display: none;
-      flex-direction: column;
-      z-index: 1000;
-      transition: transform 0.3s ease;
-      overflow: auto;
-    }
+.window {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 90%;
+  max-width: 500px;
+  height: 80vh;              /* фіксуємо висоту */
+  background: #f0f0f0;
+  color: #000;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+}
 
-    .window.open {
-      transform: translate(-50%, -50%) scale(1);
-    }
+.window-header {
+  flex-shrink: 0;
+  width: 100%;
+  padding: 8px 12px;
+  background: #e0e0e0;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* вирівнюємо по центру */
+  font-weight: bold;
+  cursor: grab;
+  box-sizing: border-box;
+  position: relative;       /* щоб кнопка позиціонувалась */
+}
 
-    .window-header {
-      padding: 8px 12px;
-      background: #e0e0e0;
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
-      display: flex;
-      align-items: center;
-      font-weight: bold;
-    }
+.window-close {
+  position: absolute;
+  left: 12px;              /* кнопка завжди зліва */
+  width: 16px;
+  height: 16px;
+  background: #ff5c5c;
+  border-radius: 50%;
+  cursor: pointer;
+}
 
-    .window-close {
-      width: 12px;
-      height: 12px;
-      background: #ff5c5c;
-      border-radius: 50%;
-      cursor: pointer;
-      margin-right: 8px;
-    }
+.window-content {
+  flex: 1;                   /* займає весь простір */
+  overflow-y: auto;          /* скрол працює */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  box-sizing: border-box;
+}
 
-    .window-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px;
-      overflow: auto;
-    }
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
 
-    .window-content img {
-      max-width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
+.video-container {
+  width: 100%;
+  aspect-ratio: 9 / 16;       /* вертикальне відео */
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
   </style>
 </head>
 <body>
   <div class="background"></div>
 
-  <div class="desktop">
-    <div class="icon" data-img="images/project1.jpg"><img src="images/project1.jpg"/><div class="label">Робота 1</div></div>
-    <div class="icon" data-img="images/project2.jpg"><img src="images/project2.jpg"/><div class="label">Робота 2</div></div>
-    <div class="icon" data-img="images/project3.jpg"><img src="images/project3.jpg"/><div class="label">Робота 3</div></div>
-    <div class="icon" data-img="images/project4.jpg"><img src="images/project4.jpg"/><div class="label">Робота 4</div></div>
-    <div class="icon" data-img="images/project5.jpg"><img src="images/project5.jpg"/><div class="label">Робота 5</div></div>
-    <div class="icon" data-img="images/project6.jpg"><img src="images/project6.jpg"/><div class="label">Робота 6</div></div>
-    <div class="icon" data-img="images/project7.jpg"><img src="images/project7.jpg"/><div class="label">Робота 7</div></div>
-    <div class="icon" data-img="images/project8.jpg"><img src="images/project8.jpg"/><div class="label">Робота 8</div></div>
+ <div class="desktop">
+  <!-- Іконки робіт -->
+  <div class="icon" data-img="content/2.jpg" data-video="videos/loser.mp4" data-title="Робота 21" data-top="Work 1" data-bottom="Additional info 1">
+    <img src="content/2.jpg"/>
+    <div class="label">Робота 1</div>
   </div>
+
+  <div class="icon"
+       data-img="content/1.jpg"
+       data-video="videos/video2.mp4"
+       data-title="Робота 2"
+       data-top="Назва роботи 2"
+       data-bottom="Деталі про роботу 2">
+    <img src="content/1.jpg"/>
+    <div class="label">Робота 2</div>
+  </div>
+
+  <!-- Робота 3 -->
+  <div class="icon"
+       data-img="images/project3.jpg"
+       data-video="videos/video3.mp4"
+       data-title="Робота 3"
+       data-top="Назва роботи 3"
+       data-bottom="Деталі про роботу 3">
+    <img src="images/project3.jpg"/>
+    <div class="label">Робота 3</div>
+  </div>
+
+  <!-- Робота 4 -->
+  <div class="icon"
+       data-img="images/project4.jpg"
+       data-video="videos/video4.mp4"
+       data-title="Робота 4"
+       data-top="Назва роботи 4"
+       data-bottom="Деталі про роботу 4">
+    <img src="images/project4.jpg"/>
+    <div class="label">Робота 4</div>
+  </div>
+
+  <!-- Робота 5 -->
+  <div class="icon"
+       data-img="images/project5.jpg"
+       data-video="videos/video5.mp4"
+       data-title="Робота 5"
+       data-top="Назва роботи 5"
+       data-bottom="Деталі про роботу 5">
+    <img src="images/project5.jpg"/>
+    <div class="label">Робота 5</div>
+  </div>
+
+  <!-- Робота 6 -->
+  <div class="icon"
+       data-img="images/project6.jpg"
+       data-video="videos/video6.mp4"
+       data-title="Робота 6"
+       data-top="Назва роботи 6"
+       data-bottom="Деталі про роботу 6">
+    <img src="images/project6.jpg"/>
+    <div class="label">Робота 6</div>
+  </div>
+
+  <!-- Робота 7 -->
+  <div class="icon"
+       data-img="images/project7.jpg"
+       data-video="videos/video7.mp4"
+       data-title="Робота 7"
+       data-top="Назва роботи 7"
+       data-bottom="Деталі про роботу 7">
+    <img src="images/project7.jpg"/>
+    <div class="label">Робота 7</div>
+  </div>
+
+  <!-- Робота 8 -->
+  <div class="icon"
+       data-img="images/project8.jpg"
+       data-video="videos/video8.mp4"
+       data-title="Робота 8"
+       data-top="Назва роботи 8"
+       data-bottom="Деталі про роботу 8">
+    <img src="images/project8.jpg"/>
+    <div class="label">Робота 8</div>
+  </div>
+</div>
+<!-- Вікно перегляду -->
+<div class="window" id="window">
+  <div class="window-header">
+    <div class="window-close" id="close"></div>
+    <span>Preview</span>
+  </div>
+  <div class="window-content">
+    <div class="top-text">Work</div>
+
+    <div class="image-container">
+      <img id="window-img" src="" alt="Work image">
+    </div>
+
+    <div class="video-container">
+      <video id="window-video" controls>
+        <source id="window-video-src" src="" type="video/mp4">
+        Ваш браузер не підтримує відео.
+      </video>
+    </div>
+
+    <div class="bottom-text">Additional info</div>
+  </div>
+</div>
 
   <div class="dock">
     <div class="dock-item"><img src="icons/ae.png"/><div class="label">After Effects</div></div>
     <div class="dock-item"><img src="icons/ai.png"/><div class="label">Illustrator</div></div>
     <div class="dock-item"><img src="icons/ps.png"/><div class="label">Photoshop</div></div>
-    <div class="dock-item"><img src="icons/behance.png"/><div class="label">Behance</div></div>
-    <div class="dock-item"><img src="icons/gmail.png"/><div class="label">Gmail</div></div>
-    <div class="dock-item"><img src="icons/instagram.png"/><div class="label">Instagram</div></div>
+    <a href="https://www.behance.net/8f119ec2" target="_blank" class="dock-item">
+    <img src="icons/behance.png"/>
+    <div class="label">Behance</div>
+  </a>
+  <a href="https://basnasvas600@gmail.com/" target="_blank" class="dock-item">
+    <img src="icons/gmail.png"/>
+    <div class="label">Gmail</div>
+  </a>
+  <a href="https://www.instagram.com/_youishit_/" target="_blank" class="dock-item">
+    <img src="icons/instagram.png"/>
+    <div class="label">Instagram</div>
+  </a>
     <div class="dock-item"><img src="icons/gallery.png"/><div class="label">Photos</div></div>
   </div>
 
   <div class="window" id="window">
     <div class="window-header">
       <div class="window-close" id="close"></div>
-      <span>Preview</span>
+      <span>Preview1</span>
     </div>
     <div class="window-content">
-      <div class="top-text">Title or description above</div>
-      <img id="window-img" src=""/>
+      <div class="top-text">Work1</div>
+      <img id="window-img" src="content/1.jpg"/>
       <div class="bottom-text">Additional info below</div>
     </div>
   </div>
 
   <script>
-    const icons = document.querySelectorAll('.icon');
-    const windowEl = document.getElementById('window');
-    const windowImg = document.getElementById('window-img');
-    const closeBtn = document.getElementById('close');
+ const icons = document.querySelectorAll('.icon');
+const windowEl = document.getElementById('window');
+const videoEl = document.getElementById('window-video');
+const videoSource = videoEl.querySelector('source');
+const imgEl = document.getElementById('window-img');
+const closeBtn = document.getElementById('close');
+const windowHeader = document.querySelector('.window-header');
+
+icons.forEach(icon => {
+  icon.addEventListener('click', () => {
+    const imgSrc = icon.dataset.img;
+    const videoSrc = icon.dataset.video;
+    const title = icon.dataset.title;
+    const topText = icon.dataset.top;
+    const bottomText = icon.dataset.bottom;
+
+    // Фото
+    imgEl.src = imgSrc;
+
+    // Відео
+    videoSource.src = videoSrc;
+    videoEl.load();
+    videoEl.onloadedmetadata = () => videoEl.play();
+
+    // Тексти
+    windowEl.querySelector('.window-header span').textContent = title;
+    windowEl.querySelector('.top-text').textContent = topText;
+    windowEl.querySelector('.bottom-text').textContent = bottomText;
+
+    // Відкриваємо вікно
+    windowEl.style.display = 'flex';
+    setTimeout(() => windowEl.classList.add('open'), 10);
+  });
+});
+
+// Закриття вікна
+closeBtn.addEventListener('click', () => {
+  videoEl.pause();
+  windowEl.style.display = 'none';
+  windowEl.classList.remove('open');
+});
 
     function placeIconsRandomly() {
       const desktop = document.querySelector('.desktop');
@@ -316,6 +477,91 @@
       windowEl.style.display = 'none';
       windowEl.classList.remove('open');
     });
+
+function openWindow() {
+  windowEl.style.display = 'flex';
+  requestAnimationFrame(() => {
+    const { innerWidth, innerHeight } = window;
+    const rect = windowEl.getBoundingClientRect();
+    windowEl.style.left = (innerWidth - rect.width)/2 + 'px';
+    windowEl.style.top  = (innerHeight - rect.height)/2 + 'px';
+  });
+}
+
+// Клік на іконку
+icons.forEach(icon => {
+  icon.addEventListener('click', () => {
+    imgEl.src = icon.dataset.img;
+    videoSource.src = icon.dataset.video;
+    videoEl.load();
+    videoEl.onloadedmetadata = () => videoEl.play();
+
+    windowEl.querySelector('.window-header span').textContent = icon.dataset.title;
+    windowEl.querySelector('.top-text').textContent = icon.dataset.top;
+    windowEl.querySelector('.bottom-text').textContent = icon.dataset.bottom;
+
+    openWindow();
+  });
+});
+
+// Закриття
+closeBtn.addEventListener('click', () => {
+  videoEl.pause();
+  windowEl.style.display = 'none';
+});
+    // Перетягування вікна за верхню панель (муха)
+windowHeader.addEventListener('mousedown', e => {
+  e.preventDefault();
+  const rect = windowEl.getBoundingClientRect();
+  const offsetX = e.clientX - rect.left;
+  const offsetY = e.clientY - rect.top;
+
+  function moveAt(event) {
+    let newX = event.clientX - offsetX;
+    let newY = event.clientY - offsetY;
+
+    const { innerWidth, innerHeight } = window;
+    newX = Math.max(0, Math.min(innerWidth - rect.width, newX));
+    newY = Math.max(0, Math.min(innerHeight - rect.height, newY));
+
+    windowEl.style.left = newX + 'px';
+    windowEl.style.top = newY + 'px';
+  }
+
+  function onMouseMove(event) { moveAt(event); }
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', () => {
+    document.removeEventListener('mousemove', onMouseMove);
+  }, { once: true });
+});
+
+// Перетягування на сенсорних пристроях
+windowHeader.addEventListener('touchstart', e => {
+  const touch = e.touches[0];
+  const rect = windowEl.getBoundingClientRect();
+  const offsetX = touch.clientX - rect.left;
+  const offsetY = touch.clientY - rect.top;
+
+  function moveAt(event) {
+    const t = event.touches[0];
+    let newX = t.clientX - offsetX;
+    let newY = t.clientY - offsetY;
+
+    const { innerWidth, innerHeight } = window;
+    newX = Math.max(0, Math.min(innerWidth - rect.width, newX));
+    newY = Math.max(0, Math.min(innerHeight - rect.height, newY));
+
+    windowEl.style.left = newX + 'px';
+    windowEl.style.top = newY + 'px';
+  }
+
+  function onTouchMove(event) { moveAt(event); }
+
+  document.addEventListener('touchmove', onTouchMove);
+  document.addEventListener('touchend', () => {
+    document.removeEventListener('touchmove', onTouchMove);
+  }, { once: true });
+});
   </script>
 </body>
 </html>
