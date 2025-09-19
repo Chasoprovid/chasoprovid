@@ -2,7 +2,8 @@
 <html lang="uk">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Заборона масштабування на телефоні -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Портфоліо — Вадим Галущак</title>
   <style>
     body {
@@ -32,6 +33,7 @@
     .icon {
       position: absolute;
       width: 60px;
+      aspect-ratio: 1/1;
       text-align: center;
       user-select: none;
       transition: transform 0.2s ease;
@@ -39,32 +41,31 @@
     }
 
     .icon img {
-      width: 48px;
-      height: 48px;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       display: block;
-      margin: 0 auto;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       transition: transform 0.2s ease;
     }
 
     .icon:hover img {
-      transform: scale(1.2);
+      transform: scale(1.15);
     }
 
+    /* Прозорий квадрат при наведенні */
     .icon:hover::before {
       content: '';
       position: absolute;
-      top: -8px;
-      left: -8px;
-      width: 80px;
-      height: 80px;
+      top: -4px;
+      left: -4px;
+      width: calc(100% + 8px);
+      height: calc(100% + 8px);
       border: 2px solid gray;
       border-radius: 12px;
-      background: rgba(255,255,255,0.02);
-      z-index: -1;
-      transition: all 0.2s ease;
+      background: rgba(255,255,255,0.05);
+      pointer-events: none;
     }
 
     .icon .label {
@@ -81,8 +82,9 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
+      justify-content: center;
       gap: 18px;
-      padding: 12px;
+      padding: 12px 20px;
       border-radius: 20px;
       background: rgba(255,255,255,0.08);
       backdrop-filter: blur(12px);
@@ -92,7 +94,7 @@
     .dock-item {
       position: relative;
       width: 44px;
-      height: 44px;
+      aspect-ratio: 1/1;
       cursor: pointer;
       transition: transform 0.2s ease;
     }
@@ -105,13 +107,13 @@
     }
 
     .dock-item:hover img {
-      transform: scale(1.4);
+      transform: scale(1.3);
     }
 
     .dock-item .label {
       display: none;
       position: absolute;
-      top: -20px;
+      top: -22px;
       left: 50%;
       transform: translateX(-50%);
       font-size: 12px;
@@ -131,7 +133,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0.5);
-      width: 500px;
+      width: 90%;
+      max-width: 500px;
       height: 400px;
       background: #f0f0f0;
       color: #000;
@@ -156,8 +159,6 @@
       display: flex;
       align-items: center;
       font-weight: bold;
-      position: relative;
-      cursor: default;
     }
 
     .window-close {
@@ -167,10 +168,6 @@
       border-radius: 50%;
       cursor: pointer;
       margin-right: 8px;
-    }
-
-    .window-header span {
-      margin-left: 4px;
     }
 
     .window-content {
@@ -183,25 +180,10 @@
       overflow: auto;
     }
 
-    .window-content .top-text,
-    .window-content .bottom-text {
-      font-size: 14px;
-      margin: 4px 0;
-      color: #333;
-    }
-
-    .window img {
+    .window-content img {
       max-width: 100%;
-      max-height: 100%;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    @media (max-width: 768px) {
-      .icon { width: 40px; height: 40px; }
-      .icon img { width: 32px; height: 32px; }
-      .icon .label { font-size: 9px; }
-      .dock { bottom: 20px; transform: translateX(-50%); padding: 6px; gap: 10px; }
     }
   </style>
 </head>
@@ -209,14 +191,14 @@
   <div class="background"></div>
 
   <div class="desktop">
-    <div class="icon" style="top:70px; left:80px;" data-img="images/project1.jpg"><img src="images/project1.jpg"/><div class="label">Робота 1</div></div>
-    <div class="icon" style="top:180px; left:150px;" data-img="images/project2.jpg"><img src="images/project2.jpg"/><div class="label">Робота 2</div></div>
-    <div class="icon" style="top:250px; left:400px;" data-img="images/project3.jpg"><img src="images/project3.jpg"/><div class="label">Робота 3</div></div>
-    <div class="icon" style="top:320px; left:120px;" data-img="images/project4.jpg"><img src="images/project4.jpg"/><div class="label">Робота 4</div></div>
-    <div class="icon" style="top:90px; left:600px;" data-img="images/project5.jpg"><img src="images/project5.jpg"/><div class="label">Робота 5</div></div>
-    <div class="icon" style="top:370px; left:500px;" data-img="images/project6.jpg"><img src="images/project6.jpg"/><div class="label">Робота 6</div></div>
-    <div class="icon" style="top:400px; left:250px;" data-img="images/project7.jpg"><img src="images/project7.jpg"/><div class="label">Робота 7</div></div>
-    <div class="icon" style="top:150px; left:700px;" data-img="images/project8.jpg"><img src="images/project8.jpg"/><div class="label">Робота 8</div></div>
+    <div class="icon" data-img="images/project1.jpg"><img src="images/project1.jpg"/><div class="label">Робота 1</div></div>
+    <div class="icon" data-img="images/project2.jpg"><img src="images/project2.jpg"/><div class="label">Робота 2</div></div>
+    <div class="icon" data-img="images/project3.jpg"><img src="images/project3.jpg"/><div class="label">Робота 3</div></div>
+    <div class="icon" data-img="images/project4.jpg"><img src="images/project4.jpg"/><div class="label">Робота 4</div></div>
+    <div class="icon" data-img="images/project5.jpg"><img src="images/project5.jpg"/><div class="label">Робота 5</div></div>
+    <div class="icon" data-img="images/project6.jpg"><img src="images/project6.jpg"/><div class="label">Робота 6</div></div>
+    <div class="icon" data-img="images/project7.jpg"><img src="images/project7.jpg"/><div class="label">Робота 7</div></div>
+    <div class="icon" data-img="images/project8.jpg"><img src="images/project8.jpg"/><div class="label">Робота 8</div></div>
   </div>
 
   <div class="dock">
@@ -229,7 +211,7 @@
   </div>
 
   <div class="window" id="window">
-    <div class="window-header" id="window-header">
+    <div class="window-header">
       <div class="window-close" id="close"></div>
       <span>Preview</span>
     </div>
@@ -246,30 +228,82 @@
     const windowImg = document.getElementById('window-img');
     const closeBtn = document.getElementById('close');
 
+    function placeIconsRandomly() {
+      const desktop = document.querySelector('.desktop');
+      const dock = document.querySelector('.dock');
+      const { width, height } = desktop.getBoundingClientRect();
+      const dockHeight = dock.offsetHeight + 20;
+      icons.forEach(icon => {
+        const x = Math.random() * (width - 70);
+        const y = Math.random() * (height - 70 - dockHeight);
+        icon.style.left = x + 'px';
+        icon.style.top = y + 'px';
+      });
+    }
+
+    placeIconsRandomly();
+    window.addEventListener('resize', placeIconsRandomly);
+
     icons.forEach(icon => {
       icon.addEventListener('click', () => {
         windowImg.src = icon.dataset.img;
         windowEl.style.display = 'flex';
-        setTimeout(() => windowEl.classList.add('open'), 10); });
+        setTimeout(() => windowEl.classList.add('open'), 10);
+      });
 
+      // Drag with mouse
       icon.addEventListener('mousedown', e => {
         const rect = icon.getBoundingClientRect();
         const offsetX = e.clientX - rect.left;
         const offsetY = e.clientY - rect.top;
 
         function moveAt(event) {
-          icon.style.left = event.clientX - offsetX + 'px';
-          icon.style.top = event.clientY - offsetY + 'px';
+          let newX = event.clientX - offsetX;
+          let newY = event.clientY - offsetY;
+          const dock = document.querySelector('.dock');
+          const desktop = document.querySelector('.desktop');
+          const dockHeight = dock.offsetHeight + 20;
+          const { width, height } = desktop.getBoundingClientRect();
+          newX = Math.max(0, Math.min(width - rect.width, newX));
+          newY = Math.max(0, Math.min(height - rect.height - dockHeight, newY));
+          icon.style.left = newX + 'px';
+          icon.style.top = newY + 'px';
         }
 
-        function onMouseMove(event) {
-          moveAt(event);
-        }
+        function onMouseMove(event) { moveAt(event); }
 
         document.addEventListener('mousemove', onMouseMove);
-
-        document.addEventListener('mouseup', function() {
+        document.addEventListener('mouseup', () => {
           document.removeEventListener('mousemove', onMouseMove);
+        }, { once: true });
+      });
+
+      // Drag with touch
+      icon.addEventListener('touchstart', e => {
+        const touch = e.touches[0];
+        const rect = icon.getBoundingClientRect();
+        const offsetX = touch.clientX - rect.left;
+        const offsetY = touch.clientY - rect.top;
+
+        function moveAt(event) {
+          const t = event.touches[0];
+          let newX = t.clientX - offsetX;
+          let newY = t.clientY - offsetY;
+          const dock = document.querySelector('.dock');
+          const desktop = document.querySelector('.desktop');
+          const dockHeight = dock.offsetHeight + 20;
+          const { width, height } = desktop.getBoundingClientRect();
+          newX = Math.max(0, Math.min(width - rect.width, newX));
+          newY = Math.max(0, Math.min(height - rect.height - dockHeight, newY));
+          icon.style.left = newX + 'px';
+          icon.style.top = newY + 'px';
+        }
+
+        function onTouchMove(event) { moveAt(event); }
+
+        document.addEventListener('touchmove', onTouchMove);
+        document.addEventListener('touchend', () => {
+          document.removeEventListener('touchmove', onTouchMove);
         }, { once: true });
       });
     });
