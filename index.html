@@ -51,21 +51,23 @@
     }
 
     .icon:hover img {
-      transform: scale(1.15);
+      transform: scale(1.10);
     }
 
     /* Прозорий квадрат при наведенні */
     .icon:hover::before {
       content: '';
       position: absolute;
-      top: -4px;
-      left: -4px;
-      width: calc(100% + 8px);
-      height: calc(100% + 8px);
-      border: 2px solid gray;
+      top: 50%;
+      left: 50%;
+      width: calc(145%);
+      aspect-ratio: 1/1;
+      transform: translate(-50%, -50%);
+      border: 1px solid gray;
       border-radius: 12px;
-      background: rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.03);
       pointer-events: none;
+      z-index: 0;
     }
 
     .icon .label {
@@ -205,9 +207,9 @@
     <div class="dock-item"><img src="icons/ae.png"/><div class="label">After Effects</div></div>
     <div class="dock-item"><img src="icons/ai.png"/><div class="label">Illustrator</div></div>
     <div class="dock-item"><img src="icons/ps.png"/><div class="label">Photoshop</div></div>
-    <div class="dock-item"><img src="icons/figma.png"/><div class="label">Figma</div></div>
+    <div class="dock-item"><img src="icons/behance.png"/><div class="label">Behance</div></div>
     <div class="dock-item"><img src="icons/gmail.png"/><div class="label">Gmail</div></div>
-    <div class="dock-item"><img src="icons/telegram.png"/><div class="label">Telegram</div></div>
+    <div class="dock-item"><img src="icons/instagram.png"/><div class="label">Instagram</div></div>
   </div>
 
   <div class="window" id="window">
