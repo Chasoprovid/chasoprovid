@@ -206,7 +206,18 @@
   height: 100%;
   object-fit: contain;
 }
-    /* === маленьке вікно для dock === */
+#photosWindow {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 70%;
+  max-width: 600px;
+  height: 70%;
+  display: none;
+  flex-direction: column;
+  z-index: 2000;
+}
+  /* === маленьке вікно для dock === */
     .dock-popup {
       position: fixed; /* завжди відносно вікна */
       top: 50%;
@@ -384,7 +395,7 @@
 </div>
 
   <div class="dock">
-    <div class="dock-item" data-title="After Effects" data-text="Програма для анімацій та відеоефектів.">
+    <div class="dock-item" data-title="After Effects" data-text="Програма для анімацій та відеоефектів."data-img="content/crash.png">
       <img src="icons/ae.png"/><div class="label">After Effects</div>
     </div>
     <div class="dock-item" data-title="Illustrator" data-text="Векторна графіка та ілюстрації.">
@@ -445,7 +456,7 @@
     <div class="dock-popup-text" id="dockPopupText"></div>
   </div>
 <script>
-  const dockItems = document.querySelectorAll('.dock-item');
+const dockItems = document.querySelectorAll('.dock-item');
 const dockPopup = document.getElementById('dockPopup');
 const dockPopupClose = document.getElementById('dockPopupClose');
 const dockPopupTitle = document.getElementById('dockPopupTitle');
@@ -453,21 +464,37 @@ const dockPopupText = document.getElementById('dockPopupText');
 
 // Унікальне вікно для Photos
 const photosWindow = document.getElementById('photosWindow');
+const photosHeader = photosWindow.querySelector('.window-header');
 const photosClose = document.getElementById('photosClose');
 const dockGallery = document.getElementById('dockGallery');
 
 // --- Логіка для dock ---
 dockItems.forEach(item => {
   item.addEventListener('click', e => {
-    // Якщо це іконка Photos — відкриваємо тільки її унікальне вікно
+    // Якщо це посилання <a> — даємо йому працювати як є
+    if (item.tagName.toLowerCase() === 'a') return;
+
+    // Якщо це Photos
     if (item.id === 'dockGallery') {
       photosWindow.style.display = 'flex';
-      return; // виходимо, щоб не відкривати інші вікна
+      return;
     }
 
-    // Інакше показуємо маленький попап
-    dockPopupTitle.textContent = item.getAttribute('data-title');
-    dockPopupText.textContent = item.getAttribute('data-text');
+    // Якщо це After Effects — показуємо картинку + текст
+    if (item.querySelector('.label')?.textContent.trim() === 'After Effects') {
+      dockPopupTitle.textContent = item.getAttribute('data-title');
+      dockPopupText.innerHTML = `
+        <p>${item.getAttribute('data-text')}</p>
+        <img src="${item.getAttribute('data-img')}" 
+             style="width:100%;border-radius:6px;margin-top:8px;">
+      `;
+      dockPopup.style.display = 'block';
+      return;
+    }
+
+    // Інші dock-item — тільки текст
+    dockPopupTitle.textContent = item.getAttribute('data-title') || '';
+    dockPopupText.textContent = item.getAttribute('data-text') || '';
     dockPopup.style.display = 'block';
   });
 });
@@ -486,6 +513,48 @@ document.addEventListener('click', e => {
 // --- Закриття великого фото-вікна ---
 photosClose.addEventListener('click', () => {
   photosWindow.style.display = 'none';
+});
+
+// --- Перетягування Photos ---
+photosHeader.addEventListener('mousedown', e => {
+  e.preventDefault();
+  const rect = photosWindow.getBoundingClientRect();
+  const offsetX = e.clientX - rect.left;
+  const offsetY = e.clientY - rect.top;
+
+  function moveAt(event) {
+    photosWindow.style.left = (event.clientX - offsetX) + 'px';
+    photosWindow.style.top = (event.clientY - offsetY) + 'px';
+    photosWindow.style.transform = ''; // прибираємо translate при drag
+  }
+
+  function onMouseMove(event) { moveAt(event); }
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', () => {
+    document.removeEventListener('mousemove', onMouseMove);
+  }, { once: true });
+});
+
+// --- Перетягування Photos на сенсорних пристроях ---
+photosHeader.addEventListener('touchstart', e => {
+  const touch = e.touches[0];
+  const rect = photosWindow.getBoundingClientRect();
+  const offsetX = touch.clientX - rect.left;
+  const offsetY = touch.clientY - rect.top;
+
+  function moveAt(event) {
+    const t = event.touches[0];
+    photosWindow.style.left = (t.clientX - offsetX) + 'px';
+    photosWindow.style.top = (t.clientY - offsetY) + 'px';
+    photosWindow.style.transform = '';
+  }
+
+  function onTouchMove(event) { moveAt(event); }
+
+  document.addEventListener('touchmove', onTouchMove);
+  document.addEventListener('touchend', () => {
+    document.removeEventListener('touchmove', onTouchMove);
+  }, { once: true });
 });
 
 </script>
