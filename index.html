@@ -19,10 +19,105 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('content/bg.jpg') no-repeat center center / cover;
-      filter: blur(4px);
+      background: url('content/bg2.jpg') no-repeat center center / cover;
+      filter: blur(0px);
       z-index: -1;
     }
+.welcome-img {
+  position: fixed;
+  top: 5vw;
+  left: 5vw;
+  width: 300px; /* можна підлаштувати */
+  opacity: 0;
+  transform: translate(-80%, 0%); /* початково за межами зверху зліва */
+  animation: slideInWelcome 0.8s ease-out forwards;
+  animation-delay: 1.5s; /* невелика пауза перед виїздом */
+  z-index: -1;
+}
+
+@keyframes slideInWelcome {
+  to {
+    transform: translate(0, 0); /* стає на місце */
+    opacity: 1;
+  }
+}
+.cball-img {
+  position: fixed;
+  bottom: 3vw;
+  right: 6vw;
+  width: 15vw;
+  opacity: 0;
+  transform: translate(100%, 120%);
+  animation: flyInCball 1.2s ease-out forwards, floatCball 4s ease-in-out infinite;
+  animation-delay: 3s, 4.3s; /* перша анімація стартує одразу, друга підключається після вильоту */
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes flyInCball {
+  to {
+    transform: translate(0, -60vh); /* виліт угору */
+    opacity: 1;
+  }
+}
+
+@keyframes floatCball {
+  0%   { transform: translate(0, -60vh); }
+  50%  { transform: translate(0, -61vh); } /* трохи вище */
+  100% { transform: translate(0, -60vh); }
+}
+
+.cball2-img {
+  position: fixed;
+  bottom: 20px;
+  left: 3vw;
+  width: 18vw;
+  opacity: 0;
+  transform: translate(0%, 120%);
+  animation: flyInCball2 1.2s ease-out forwards, floatCball2 4s ease-in-out infinite;
+  animation-delay: 3.5s, 4.8s; /* перша анімація стартує одразу, друга підключається після вильоту */
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes flyInCball2 {
+  to {
+    transform: translate(0, -50vh); /* виліт угору */
+    opacity: 1;
+  }
+}
+
+@keyframes floatCball2 {
+  0%   { transform: translate(0, -50vh); }
+  50%  { transform: translate(0, -52vh); } /* трохи вище */
+  100% { transform: translate(0, -50vh); }
+}
+.cball3-img {
+  position: fixed;
+  bottom: 20px;
+  left: 40vw;
+  width: 10vw;
+  opacity: 0;
+  transform: translate(0%, 120%);
+  animation: flyInCball 1.2s ease-out forwards, floatCball 4s ease-in-out infinite;
+  animation-delay: 4.5s, 5.8s; /* перша анімація стартує одразу, друга підключається після вильоту */
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes flyInCball {
+  to {
+    transform: translate(0, -20vh); /* виліт угору */
+    opacity: 1;
+  }
+}
+
+@keyframes floatCball {
+  0%   { transform: translate(0, -20vh); }
+  50%  { transform: translate(0, -23vh); } /* трохи вище */
+  100% { transform: translate(0, -20vh); }
+}
+
 
     .desktop {
       position: relative;
@@ -61,7 +156,7 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: calc(145%);
+      width: calc(150%);
       aspect-ratio: 1/1;
       transform: translate(-50%, -50%);
       border: 1px solid gray;
@@ -90,9 +185,9 @@
       gap: 18px;
       padding: 12px 20px;
       border-radius: 20px;
-      background: rgba(255,255,255,0.02);
-      backdrop-filter: blur(4px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      background: rgba(255,255,255,0.01);
+      backdrop-filter: blur(1px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
 
     .dock-item {
@@ -316,9 +411,13 @@
 <body>
   <div class="background"></div>
 
+<img src="content/welcome.png" alt="Welcome" class="welcome-img">
+ <img src="content/cball.png" alt="Ball" class="cball-img">
+ <img src="content/cball5.png" alt="Ball2" class="cball2-img">
+ <img src="content/cball6.png" alt="Ball3" class="cball3-img">
  <div class="desktop">
   <!-- Іконки робіт -->
-  <div class="icon" data-img="content/2.jpg" data-video="videos/loser.mp4" data-title="Робота 21" data-top="Work 1" data-bottom="Additional info 1">
+  <div class="icon" data-img="content/cball5.png" data-video="videos/loser.mp4" data-title="Робота 21" data-top="Work 1" data-bottom="Additional info 1">
     <img src="content/2.jpg"/>
     <div class="label">Робота 1</div>
   </div>
@@ -792,9 +891,7 @@ windowHeader.addEventListener('touchstart', e => {
     windowEl.style.left = newX + 'px';
     windowEl.style.top = newY + 'px';
   }
-
   function onTouchMove(event) { moveAt(event); }
-
   document.addEventListener('touchmove', onTouchMove);
   document.addEventListener('touchend', () => {
     document.removeEventListener('touchmove', onTouchMove);
