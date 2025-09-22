@@ -916,10 +916,10 @@ closeBtn.addEventListener('click', () => {
       const desktop = document.querySelector('.desktop');
       const dock = document.querySelector('.dock');
       const { width, height } = desktop.getBoundingClientRect();
-      const dockHeight = dock.offsetHeight + 20;
+      const dockHeight = dock.offsetHeight + 35;
       icons.forEach(icon => {
         const x = Math.random() * (width - 70);
-        const y = Math.random() * (height - 70 - dockHeight);
+        const y = 40 + Math.random() * (height - 70 - dockHeight);
         icon.style.left = x + 'px';
         icon.style.top = y + 'px';
       });
