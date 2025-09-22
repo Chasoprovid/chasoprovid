@@ -23,6 +23,34 @@
       filter: blur(0px);
       z-index: -1;
     }
+
+.ball-video {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60vw; /* можна підлаштувати */
+  opacity: 0;
+  filter: blur(1px);
+  transform: translate(100%, -100%); /* старт за межами (правий верхній кут) */
+  animation: flyInBall 4s ease-out forwards, floatBall 4s ease-in-out infinite;
+  animation-delay: 5s, 9s; /* спочатку виліт, потім коливання */
+  z-index: -1;
+  pointer-events: none; /* щоб відео не заважало клікам */
+}
+
+@keyframes flyInBall {
+  to {
+    transform: translate(0, 0); /* стає у верхньому правому куті */
+    opacity: 1;
+  }
+}
+
+@keyframes floatBall {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(0, -30px); } /* вище */
+  100% { transform: translate(0, 0); }
+}
+
 .welcome-img {
   position: fixed;
   top: 5vw;
@@ -82,15 +110,15 @@
 
 @keyframes flyInCball2 {
   to {
-    transform: translate(0, -50vh); /* виліт угору */
+    transform: translate(0, -44vh); /* виліт угору */
     opacity: 1;
   }
 }
 
 @keyframes floatCball2 {
-  0%   { transform: translate(0, -50vh); }
-  50%  { transform: translate(0, -52vh); } /* трохи вище */
-  100% { transform: translate(0, -50vh); }
+  0%   { transform: translate(0, -44vh); }
+  50%  { transform: translate(0, -46vh); } /* трохи вище */
+  100% { transform: translate(0, -44vh); }
 }
 .cball3-img {
   position: fixed;
@@ -117,7 +145,6 @@
   50%  { transform: translate(0, -23vh); } /* трохи вище */
   100% { transform: translate(0, -20vh); }
 }
-
 
     .desktop {
       position: relative;
@@ -410,11 +437,13 @@
 </head>
 <body>
   <div class="background"></div>
-
+ <video src="videos/ball.webm" autoplay muted loop playsinline class="ball-video"></video>
 <img src="content/welcome.png" alt="Welcome" class="welcome-img">
  <img src="content/cball.png" alt="Ball" class="cball-img">
  <img src="content/cball5.png" alt="Ball2" class="cball2-img">
  <img src="content/cball6.png" alt="Ball3" class="cball3-img">
+
+
  <div class="desktop">
   <!-- Іконки робіт -->
   <div class="icon" data-img="content/cball5.png" data-video="videos/loser.mp4" data-title="Робота 21" data-top="Work 1" data-bottom="Additional info 1">
