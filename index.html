@@ -50,7 +50,11 @@
   50%  { transform: translate(0, -30px); } /* вище */
   100% { transform: translate(0, 0); }
 }
-
+@media (max-width: 768px) {
+  .ball-video {
+    display: none;
+  }
+}
 .welcome-img {
   position: fixed;
   top: 5vw;
