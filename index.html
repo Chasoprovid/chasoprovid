@@ -4,15 +4,13 @@
   <meta charset="utf-8" />
   <!-- Заборона масштабування на телефоні -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Портфоліо</title>
+  <title>Portfolio</title>
   <style>
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       height: 100vh;
-      overflow: hidden;
-    }
-
+      overflow: hidden;}
     .background {
       position: fixed;
       top: 0;
@@ -21,9 +19,7 @@
       height: 100%;
       background: url('content/bg2.jpg') no-repeat center center / cover;
       filter: blur(0px);
-      z-index: -1;
-    }
-
+      z-index: -1;}
 .ball-video {
   position: fixed;
   top: 0;
@@ -35,26 +31,18 @@
   animation: flyInBall 4s ease-out forwards, floatBall 4s ease-in-out infinite;
   animation-delay: 5s, 9s; /* спочатку виліт, потім коливання */
   z-index: -1;
-  pointer-events: none; /* щоб відео не заважало клікам */
-}
-
+  pointer-events: none; /* щоб відео не заважало клікам */}
 @keyframes flyInBall {
   to {
     transform: translate(0, 0); /* стає у верхньому правому куті */
-    opacity: 1;
-  }
-}
-
+    opacity: 1;}}
 @keyframes floatBall {
   0%   { transform: translate(0, 0); }
   50%  { transform: translate(0, -30px); } /* вище */
-  100% { transform: translate(0, 0); }
-}
+  100% { transform: translate(0, 0); }}
 @media (max-width: 768px) {
   .ball-video {
-    display: none;
-  }
-}
+    display: none;}}
 .welcome-img {
   position: fixed;
   top: 5vw;
@@ -64,15 +52,11 @@
   transform: translate(-80%, 0%); /* початково за межами зверху зліва */
   animation: slideInWelcome 0.8s ease-out forwards;
   animation-delay: 1.5s; /* невелика пауза перед виїздом */
-  z-index: -1;
-}
-
+  z-index: -1;}
 @keyframes slideInWelcome {
   to {
     transform: translate(0, 0); /* стає на місце */
-    opacity: 1;
-  }
-}
+    opacity: 1;}}
 .cball-img {
   position: fixed;
   bottom: 3vw;
@@ -83,22 +67,15 @@
   animation: flyInCball 1.2s ease-out forwards, floatCball 4s ease-in-out infinite;
   animation-delay: 3s, 4.3s; /* перша анімація стартує одразу, друга підключається після вильоту */
   z-index: -1;
-  pointer-events: none;
-}
-
+  pointer-events: none;}
 @keyframes flyInCball {
   to {
     transform: translate(0, -60vh); /* виліт угору */
-    opacity: 1;
-  }
-}
-
+    opacity: 1;}}
 @keyframes floatCball {
   0%   { transform: translate(0, -60vh); }
   50%  { transform: translate(0, -61vh); } /* трохи вище */
-  100% { transform: translate(0, -60vh); }
-}
-
+  100% { transform: translate(0, -60vh); }}
 .cball2-img {
   position: fixed;
   bottom: 20px;
@@ -109,21 +86,15 @@
   animation: flyInCball2 1.2s ease-out forwards, floatCball2 4s ease-in-out infinite;
   animation-delay: 3.5s, 4.8s; /* перша анімація стартує одразу, друга підключається після вильоту */
   z-index: -1;
-  pointer-events: none;
-}
-
+  pointer-events: none;}
 @keyframes flyInCball2 {
   to {
     transform: translate(0, -44vh); /* виліт угору */
-    opacity: 1;
-  }
-}
-
+    opacity: 1;}}
 @keyframes floatCball2 {
   0%   { transform: translate(0, -44vh); }
   50%  { transform: translate(0, -46vh); } /* трохи вище */
-  100% { transform: translate(0, -44vh); }
-}
+  100% { transform: translate(0, -44vh); }}
 .cball3-img {
   position: fixed;
   bottom: 20px;
@@ -134,28 +105,24 @@
   animation: flyInCball 1.2s ease-out forwards, floatCball 4s ease-in-out infinite;
   animation-delay: 4.5s, 5.8s; /* перша анімація стартує одразу, друга підключається після вильоту */
   z-index: -1;
-  pointer-events: none;
-}
-
+  pointer-events: none;}
 @keyframes flyInCball {
   to {
     transform: translate(0, -20vh); /* виліт угору */
-    opacity: 1;
-  }
-}
-
+    opacity: 1;}}
 @keyframes floatCball {
   0%   { transform: translate(0, -20vh); }
   50%  { transform: translate(0, -23vh); } /* трохи вище */
-  100% { transform: translate(0, -20vh); }
-}
+  100% { transform: translate(0, -20vh); }}
 
-    .desktop {
+     .desktop {
       position: relative;
       width: 100%;
       height: 100%;
-    }
-
+      display: flex; /* Робить його Flexbox-контейнером */
+      justify-content: center; /* Центрує вміст по горизонталі */
+      align-items: center; /* Центрує вміст по вертикалі */
+   }
     .icon {
       position: absolute;
       width: 60px;
@@ -163,9 +130,7 @@
       text-align: center;
       user-select: none;
       transition: transform 0.2s ease;
-      cursor: grab;
-    }
-
+      cursor: grab;}
     .icon img {
       width: 100%;
       height: 100%;
@@ -174,13 +139,9 @@
       pointer-events: none;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      transition: transform 0.2s ease;
-    }
-
+      transition: transform 0.2s ease;}
     .icon:hover img {
-      transform: scale(1.10);
-    }
-
+      transform: scale(1.10);}
     /* Прозорий квадрат при наведенні */
     .icon:hover::before {
       content: '';
@@ -194,17 +155,13 @@
       border-radius: 12px;
       background: rgba(255,255,255,0.03);
       pointer-events: none;
-      z-index: 0;
-    }
-
+      z-index: 0;}
     .icon .label {
       margin-top: 4px;
       font-size: 10px;
       color: #eee;
       text-shadow: 0 1px 2px rgba(0,0,0,0.4);
-      white-space: nowrap;
-    }
-
+      white-space: nowrap;}
     .dock {
       position: fixed;
       bottom: 20px;
@@ -218,28 +175,20 @@
       border-radius: 20px;
       background: rgba(255,255,255,0.01);
       backdrop-filter: blur(0.5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-    }
-
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);}
     .dock-item {
       position: relative;
       width: clamp(7px, 10.2vw, 45px);
       aspect-ratio: 1/1;
       cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
+      transition: transform 0.2s ease;}
     .dock-item img {
       width: 100%;
       height: 100%;
       border-radius: 8px;
-      transition: transform 0.2s ease;
-    }
-
+      transition: transform 0.2s ease;}
     .dock-item:hover img {
-      transform: scale(1.3);
-    }
-
+      transform: scale(1.3);}
     .dock-item .label {
       display: none;
       position: absolute;
@@ -251,13 +200,9 @@
       padding: 2px 2px;
       border-radius: 4px;
       white-space: nowrap;
-      color: #fff;
-    }
-
+      color: #fff;}
     .dock-item:hover .label {
-      display: block;
-    }
-
+      display: block;}
 .dock {
   display: flex;
   justify-content: center;
@@ -266,101 +211,83 @@
   background: rgba(255,255,255,0.02);
   border-radius: 14px;
   backdrop-filter: blur(1px);
-  gap: 12px;
-}
-
+  gap: 12px;}
 .dock-item {
   flex: 0 0 auto; /* ❌ не дає елементу стискатись */
-  text-align: center;
-}
-
-
-}
+  text-align: center;}}
 @media (max-width: 600px) {
   .dock {
     gap: 8px;
-    padding: 4px 4px;
-  }
+    padding: 4px 4px; }
   .dock-item img {
     width: 35px;
-    height: 35px;
-  }
-}
-
-.window {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 90%;
-  max-width: 500px;
-  height: 80vh;              /* фіксуємо висоту */
-  background: #f0f0f0;
-  color: #000;
-  border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-  display: none;
-  flex-direction: column;
-  z-index: 1000;
-}
-
-.window-header {
-  flex-shrink: 0;
-  width: 100%;
-  padding: 8px 12px;
-  background: #e0e0e0;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* вирівнюємо по центру */
-  font-weight: bold;
-  cursor: grab;
-  box-sizing: border-box;
-  position: relative;       /* щоб кнопка позиціонувалась */
-}
-
-.window-close {
-  position: absolute;
-  left: 12px;              /* кнопка завжди зліва */
-  width: 16px;
-  height: 16px;
-  background: #ff5c5c;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.window-content {
-  flex: 1;                   /* займає весь простір */
-  overflow-y: auto;          /* скрол працює */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 12px;
-  box-sizing: border-box;
-}
-
-.image-container img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: contain;
-}
-
+    height: 35px;}}
+/* === Вікна === */
+    @keyframes fadeInWindow {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }}
+    @keyframes fadeOutWindow {
+      from { opacity: 1; transform: scale(1); }
+      to   { opacity: 0; transform: scale(0.9); }}
+    .window {
+      opacity: 0;
+      display: none;
+      flex-direction: column;
+      width: 90%;
+      max-width: 500px;
+      height: 80vh;
+      background: #f0f0f0;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      z-index: 2000;}
+    .window.open {
+      display: flex;
+      animation: fadeInWindow 0.3s ease forwards;}
+    .window.closing {
+      animation: fadeOutWindow 0.3s ease forwards;}
+    .window-header {
+      flex-shrink: 0;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 8px 12px;
+      background: #e0e0e0;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;}
+    .window-close {
+      position: absolute;
+      left: 12px;
+      width: 16px;
+      height: 16px;
+      background: #ff5c5c;
+      border-radius: 50%;
+      cursor: pointer;}
+    .window-content {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 12px;}
+    .window-content img, 
+    .window-content video {
+      width: 100%;
+      border-radius: 8px;}
 .video-container {
   width: 100%;
   aspect-ratio: 9 / 16;       /* вертикальне відео */
   background: #000;
   border-radius: 8px;
   overflow: hidden;
-  flex-shrink: 0;
-}
-
+  flex-shrink: 0;}
 .video-container video {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-}
+  object-fit: contain;}
 #photosWindow {
   position: fixed;
   left: 50%;
@@ -370,8 +297,7 @@
   height: 70%;
   display: none;
   flex-direction: column;
-  z-index: 2000;
-}
+  z-index: 2000;}
   /* === маленьке вікно для dock === */
     .dock-popup {
       position: fixed; /* завжди відносно вікна */
@@ -385,58 +311,45 @@
       padding: 14px;
       display: none;
       z-index: 9999;
-      animation: fadeInScale 0.2s ease;
-    }
+      animation: fadeInScale 0.2s ease;}
     .dock-popup-header {
       display: flex;
       align-items: center;
-      margin-bottom: 10px;
-    }
+      margin-bottom: 10px;}
     .dock-popup-close {
       width: 14px;
       height: 14px;
       background: #ff5f57;
       border-radius: 50%;
       cursor: pointer;
-      margin-right: 8px;
-    }
+      margin-right: 8px;}
     .dock-popup-title {
       font-weight: bold;
-      font-size: 14px;
-    }
+      font-size: 14px;}
     .dock-popup-text {
       font-size: 13px;
       color: #333;
-      line-height: 1.3;
-    }
-
+      line-height: 1.3;}
     @keyframes fadeInScale {
       from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
-      to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-    }
+      to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }}
     .photos-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 10px;
-  padding: 12px;
-}
-
+  padding: 12px;}
 .photo-slot {
   background: #ddd;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
+  justify-content: center;}
 .photo-slot img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
-
+  object-fit: cover;}
   </style>
 </head>
 <body>
@@ -447,263 +360,64 @@
  <img src="content/cball5.png" alt="Ball2" class="cball2-img">
  <img src="content/cball6.png" alt="Ball3" class="cball3-img">
 
-
  <div class="desktop">
-  <!-- Іконки робіт -->
-  <div class="icon" data-img="content/cball5.png" data-video="videos/loser.mp4" data-title="Робота 21" data-top="Work 1" data-bottom="Additional info 1">
-    <img src="content/2.jpg"/>
-    <div class="label">Робота 1</div>
-  </div>
-  <div class="icon"
-       data-img="content/1.jpg"
-       data-video="videos/video2.mp4"
-       data-title="Робота 2"
-       data-top="Назва роботи 2"
-       data-bottom="Деталі про роботу 2">
-    <img src="content/1.jpg"/>
-    <div class="label">Робота 2</div>
-  </div>
-
-  <!-- Робота 3 -->
-  <div class="icon"
-       data-img="images/project3.jpg"
-       data-video="videos/video3.mp4"
-       data-title="Робота 3"
-       data-top="Назва роботи 3"
-       data-bottom="Деталі про роботу 3">
-    <img src="images/project3.jpg"/>
-    <div class="label">Робота 3</div>
-  </div>
-
-  <!-- Робота 4 -->
-  <div class="icon"
-       data-img="images/project4.jpg"
-       data-video="videos/video4.mp4"
-       data-title="Робота 4"
-       data-top="Назва роботи 4"
-       data-bottom="Деталі про роботу 4">
-    <img src="images/project4.jpg"/>
-    <div class="label">Робота 4</div>
-  </div>
-
-  <!-- Робота 5 -->
-  <div class="icon"
-       data-img="images/project5.jpg"
-       data-video="videos/video5.mp4"
-       data-title="Робота 5"
-       data-top="Назва роботи 5"
-       data-bottom="Деталі про роботу 5">
-    <img src="images/project5.jpg"/>
-    <div class="label">Робота 5</div>
-  </div>
-
-  <!-- Робота 6 -->
-  <div class="icon"
-       data-img="images/project6.jpg"
-       data-video="videos/video6.mp4"
-       data-title="Робота 6"
-       data-top="Назва роботи 6"
-       data-bottom="Деталі про роботу 6">
-    <img src="images/project6.jpg"/>
-    <div class="label">Робота 6</div>
-  </div>
-
-  <!-- Робота 7 -->
-  <div class="icon"
-       data-img="images/project7.jpg"
-       data-video="videos/video7.mp4"
-       data-title="Робота 7"
-       data-top="Назва роботи 7"
-       data-bottom="Деталі про роботу 7">
-    <img src="images/project7.jpg"/>
-    <div class="label">Робота 7</div>
-  </div>
-
-  <!-- Робота 8 -->
-  <div class="icon"
-       data-img="images/project8.jpg"
-       data-video="videos/video8.mp4"
-       data-title="Робота 8"
-       data-top="Назва роботи 8"
-       data-bottom="Деталі про роботу 8">
-    <img src="images/project8.jpg"/>
-    <div class="label">Робота 8</div>
-  </div>
-  <div class="icon"
-       data-img="content/1.jpg"
-       data-video="videos/video2.mp4"
-       data-title="Робота 2"
-       data-top="Назва роботи 2"
-       data-bottom="Деталі про роботу 2">
-    <img src="content/1.jpg"/>
-    <div class="label">Робота 2</div>
-  </div>
-
-  <!-- Робота 3 -->
-  <div class="icon"
-       data-img="images/project3.jpg"
-       data-video="videos/video3.mp4"
-       data-title="Робота 3"
-       data-top="Назва роботи 3"
-       data-bottom="Деталі про роботу 3">
-    <img src="images/project3.jpg"/>
-    <div class="label">Робота 3</div>
-  </div>
-
-  <!-- Робота 4 -->
-  <div class="icon"
-       data-img="images/project4.jpg"
-       data-video="videos/video4.mp4"
-       data-title="Робота 4"
-       data-top="Назва роботи 4"
-       data-bottom="Деталі про роботу 4">
-    <img src="images/project4.jpg"/>
-    <div class="label">Робота 4</div>
-  </div>
-
-  <!-- Робота 5 -->
-  <div class="icon"
-       data-img="images/project5.jpg"
-       data-video="videos/video5.mp4"
-       data-title="Робота 5"
-       data-top="Назва роботи 5"
-       data-bottom="Деталі про роботу 5">
-    <img src="images/project5.jpg"/>
-    <div class="label">Робота 5</div>
-  </div>
-
-  <!-- Робота 6 -->
-  <div class="icon"
-       data-img="images/project6.jpg"
-       data-video="videos/video6.mp4"
-       data-title="Робота 6"
-       data-top="Назва роботи 6"
-       data-bottom="Деталі про роботу 6">
-    <img src="images/project6.jpg"/>
-    <div class="label">Робота 6</div>
-  </div>
-
-  <!-- Робота 7 -->
-  <div class="icon"
-       data-img="images/project7.jpg"
-       data-video="videos/video7.mp4"
-       data-title="Робота 7"
-       data-top="Назва роботи 7"
-       data-bottom="Деталі про роботу 7">
-    <img src="images/project7.jpg"/>
-    <div class="label">Робота 7</div>
-  </div>
-
-  <!-- Робота 8 -->
-  <div class="icon"
-       data-img="images/project8.jpg"
-       data-video="videos/video8.mp4"
-       data-title="Робота 8"
-       data-top="Назва роботи 8"
-       data-bottom="Деталі про роботу 8">
-    <img src="images/project8.jpg"/>
-    <div class="label">Робота 8</div>
-  </div>
-</div>
-  <div class="icon"
-       data-img="content/1.jpg"
-       data-video="videos/video2.mp4"
-       data-title="Робота 15"
-       data-top="Назва роботи 15"
-       data-bottom="Деталі про роботу 2">
-    <img src="content/1.jpg"/>
-    <div class="label">Робота 15</div>
-  </div>
-
-  <!-- Робота 3 -->
-  <div class="icon"
-       data-img="images/project3.jpg"
-       data-video="videos/video3.mp4"
-       data-title="Робота 14"
-       data-top="Назва роботи 14"
-       data-bottom="Деталі про роботу 3">
-    <img src="images/project3.jpg"/>
-    <div class="label">Робота 14</div>
-  </div>
-
-  <!-- Робота 4 -->
-  <div class="icon"
-       data-img="images/project4.jpg"
-       data-video="videos/video4.mp4"
-       data-title="Робота 13"
-       data-top="Назва роботи 13"
-       data-bottom="Деталі про роботу 4">
-    <img src="images/project4.jpg"/>
-    <div class="label">Робота 13</div>
-  </div>
-
-  <!-- Робота 5 -->
-  <div class="icon"
-       data-img="images/project5.jpg"
-       data-video="videos/video5.mp4"
-       data-title="Робота 12"
-       data-top="Назва роботи 12"
-       data-bottom="Деталі про роботу 5">
-    <img src="images/project5.jpg"/>
-    <div class="label">Робота 12</div>
-  </div>
-
-  <!-- Робота 6 -->
-  <div class="icon"
-       data-img="images/project6.jpg"
-       data-video="videos/video6.mp4"
-       data-title="Робота 11"
-       data-top="Назва роботи 11"
-       data-bottom="Деталі про роботу 6">
-    <img src="images/project6.jpg"/>
-    <div class="label">Робота 11</div>
-  </div>
-
-  <!-- Робота 7 -->
-  <div class="icon"
-       data-img="images/project7.jpg"
-       data-video="videos/video7.mp4"
-       data-title="Робота 10"
-       data-top="Назва роботи 10"
-       data-bottom="Деталі про роботу 7">
-    <img src="images/project7.jpg"/>
-    <div class="label">Робота 10</div>
-  </div>
-
-  <!-- Робота 8 -->
-  <div class="icon"
-       data-img="images/project8.jpg"
-       data-video="videos/video8.mp4"
-       data-title="Робота 9"
-       data-top="Назва роботи 9"
-       data-bottom="Деталі про роботу 8">
-    <img src="images/project8.jpg"/>
-    <div class="label">Робота 9</div>
-  </div>
-<!-- Вікно перегляду -->
-<div class="window" id="window">
-  <div class="window-header">
-    <div class="window-close" id="close"></div>
-    <span>Preview</span>
-  </div>
-  <div class="window-content">
-    <div class="top-text">Work</div>
-
-    <div class="image-container">
-      <img id="window-img" src="" alt="Work image">
+    <!-- Іконка 1 -->
+    <div class="icon" data-window="window1" >
+      <img src="content/2.jpg"/>
+      <div class="label">Робота 1</div>
+    </div>
+    <div class="window" id="window1">
+      <div class="window-header">
+        <div class="window-close"></div>
+        <span>Робота 1</span>
+      </div>
+      <div class="window-content">
+        <div class="top-text">Назва роботи 1</div>
+        <img src="content/2.jpg" alt="Work 1">
+        <img src="content/2.jpg" alt="Work 1">
+        <img src="content/2.jpg" alt="Work 1">
+        <img src="content/2.jpg" alt="Work 1">
+        <div class="bottom-text">Опис роботи 1</div>
+      </div>
     </div>
 
+    <!-- Іконка 2 -->
+    <div class="icon" data-window="window2">
+      <img src="images/project3.jpg"/>
+      <div class="label">Робота 2</div>
+    </div>
+    <div class="window" id="window2">
+      <div class="window-header">
+        <div class="window-close"></div>
+        <span>Робота 2</span>
+      </div>
+      <div class="window-content">
+        <div class="top-text">Назва роботи 2</div>
+        <img src="content/2.jpg" alt="Work 1">
+        <img src="content/2.jpg" alt="Work 1">
+        <img src="content/2.jpg" alt="Work 1">
+        <img src="content/2.jpg" alt="Work 1">
+        <video src="videos/video2.mp4" controls></video>
+        <div class="bottom-text">Опис роботи 2</div>
+      </div>
+    </div>
+    <!-- Додавай аналогічно інші іконки та вікна -->
+  </div>
+ </div>
+<!-- Вікно перегляду -->
+<div class="window">
+  <div class="window-header">
+    <div class="window-close" id="close"></div>
+    <span>Preview</span></div>
+  <div class="window-content">
+    <div class="top-text">Work</div><div class="image-container">
+      <img id="window-img" src="" alt="Work image"></div>
     <div class="video-container">
       <video id="window-video" controls>
         <source id="window-video-src" src="" type="video/mp4">
-        Ваш браузер не підтримує відео.
-      </video>
-    </div>
-
-    <div class="bottom-text">Additional info</div>
-  </div>
-</div>
-
+        Ваш браузер не підтримує відео.</video></div>
+    <div class="bottom-text">Additional info</div></div></div>
+  
   <div class="dock">
     <div class="dock-item" data-title="After Effects" data-text="Програма для анімацій та відеоефектів."data-img="content/crash.jpg">
       <img src="icons/ae.png"/><div class="label">After Effects</div>
@@ -731,31 +445,8 @@
   <div class="label">Photos</div>
 </div>
  </div>
-<!-- Унікальне вікно для Photos -->
-<div class="window" id="photosWindow">
-  <div class="window-header">
-    <div class="window-close" id="photosClose"></div>
-    <span>Photos</span>
-  </div>
-  <div class="window-content photos-grid">
-    <div class="photo-slot"><img src="content/1.jpg" alt="Photo 1"></div>
-    <div class="photo-slot"><img src="content/2.jpg" alt="Photo 2"></div>
-    <div class="photo-slot"><img src="images/project3.jpg" alt="Photo 3"></div>
-    <div class="photo-slot"><img src="images/project4.jpg" alt="Photo 4"></div>
-  </div>
-</div>
 
 
-  <div class="window" id="window">
-    <div class="window-header">
-      <div class="window-close" id="close"></div>
-      <span>Preview1</span>
-    </div>
-    <div class="window-content">
-      <div class="top-text">Work1</div>
-      <img id="window-img" src="content/1.jpg"/>
-      <div class="bottom-text">Additional info below</div>
-    </div>
   </div>
  <!-- Універсальне маленьке вікно -->
   <div class="dock-popup" id="dockPopup">
@@ -771,314 +462,109 @@ const dockPopup = document.getElementById('dockPopup');
 const dockPopupClose = document.getElementById('dockPopupClose');
 const dockPopupTitle = document.getElementById('dockPopupTitle');
 const dockPopupText = document.getElementById('dockPopupText');
-
-// Унікальне вікно для Photos
-const photosWindow = document.getElementById('photosWindow');
-const photosHeader = photosWindow.querySelector('.window-header');
-const photosClose = document.getElementById('photosClose');
-const dockGallery = document.getElementById('dockGallery');
-
 // --- Логіка для dock ---
 dockItems.forEach(item => {
   item.addEventListener('click', e => {
     // Якщо це посилання <a> — даємо йому працювати як є
     if (item.tagName.toLowerCase() === 'a') return;
-
-    // Якщо це Photos
-    if (item.id === 'dockGallery') {
-      photosWindow.style.display = 'flex';
-      return;
-    }
-
-    // Якщо це After Effects — показуємо картинку + текст
+      // Якщо це After Effects — показуємо картинку + текст
     if (item.querySelector('.label')?.textContent.trim() === 'After Effects') {
       dockPopupTitle.textContent = item.getAttribute('data-title');
       dockPopupText.innerHTML = `
         <p>${item.getAttribute('data-text')}</p>
         <img src="${item.getAttribute('data-img')}" 
-             style="width:100%;border-radius:6px;margin-top:8px;">
-      `;
-      dockPopup.style.display = 'block';
-      return;
-    }
-
+             style="width:100%;border-radius:6px;margin-top:8px;"> `;
+      dockPopup.style.display = 'block';return;}
     // Інші dock-item — тільки текст
     dockPopupTitle.textContent = item.getAttribute('data-title') || '';
     dockPopupText.textContent = item.getAttribute('data-text') || '';
-    dockPopup.style.display = 'block';
-  });
-});
-
+    dockPopup.style.display = 'block';});});
 // --- Закриття маленького попапа ---
 function closeDockPopup() {
-  dockPopup.style.display = 'none';
-}
+  dockPopup.style.display = 'none';}
 dockPopupClose.addEventListener('click', closeDockPopup);
 document.addEventListener('click', e => {
   if (!dockPopup.contains(e.target) && !e.target.closest('.dock-item')) {
-    closeDockPopup();
-  }
-});
-
-// --- Закриття великого фото-вікна ---
-photosClose.addEventListener('click', () => {
-  photosWindow.style.display = 'none';
-});
-
-// --- Перетягування Photos ---
-photosHeader.addEventListener('mousedown', e => {
-  e.preventDefault();
-  const rect = photosWindow.getBoundingClientRect();
-  const offsetX = e.clientX - rect.left;
-  const offsetY = e.clientY - rect.top;
-
-  function moveAt(event) {
-    photosWindow.style.left = (event.clientX - offsetX) + 'px';
-    photosWindow.style.top = (event.clientY - offsetY) + 'px';
-    photosWindow.style.transform = ''; // прибираємо translate при drag
-  }
-
-  function onMouseMove(event) { moveAt(event); }
-  document.addEventListener('mousemove', onMouseMove);
-  document.addEventListener('mouseup', () => {
-    document.removeEventListener('mousemove', onMouseMove);
-  }, { once: true });
-});
-
-// --- Перетягування Photos на сенсорних пристроях ---
-photosHeader.addEventListener('touchstart', e => {
-  const touch = e.touches[0];
-  const rect = photosWindow.getBoundingClientRect();
-  const offsetX = touch.clientX - rect.left;
-  const offsetY = touch.clientY - rect.top;
-
-  function moveAt(event) {
-    const t = event.touches[0];
-    photosWindow.style.left = (t.clientX - offsetX) + 'px';
-    photosWindow.style.top = (t.clientY - offsetY) + 'px';
-    photosWindow.style.transform = '';
-  }
-
-  function onTouchMove(event) { moveAt(event); }
-
-  document.addEventListener('touchmove', onTouchMove);
-  document.addEventListener('touchend', () => {
-    document.removeEventListener('touchmove', onTouchMove);
-  }, { once: true });
-});
-
-</script>
-
-  <script>
- const icons = document.querySelectorAll('.icon');
-const windowEl = document.getElementById('window');
-const videoEl = document.getElementById('window-video');
-const videoSource = videoEl.querySelector('source');
-const imgEl = document.getElementById('window-img');
-const closeBtn = document.getElementById('close');
-const windowHeader = document.querySelector('.window-header');
-
-icons.forEach(icon => {
-  icon.addEventListener('click', () => {
-    const imgSrc = icon.dataset.img;
-    const videoSrc = icon.dataset.video;
-    const title = icon.dataset.title;
-    const topText = icon.dataset.top;
-    const bottomText = icon.dataset.bottom;
-
-    // Фото
-    imgEl.src = imgSrc;
-
-    // Відео
-    videoSource.src = videoSrc;
-    videoEl.load();
-    videoEl.onloadedmetadata = () => videoEl.play();
-
-    // Тексти
-    windowEl.querySelector('.window-header span').textContent = title;
-    windowEl.querySelector('.top-text').textContent = topText;
-    windowEl.querySelector('.bottom-text').textContent = bottomText;
-
-    // Відкриваємо вікно
-    windowEl.style.display = 'flex';
-    setTimeout(() => windowEl.classList.add('open'), 10);
-  });
-});
-
-// Закриття вікна
-closeBtn.addEventListener('click', () => {
-  videoEl.pause();
-  windowEl.style.display = 'none';
-  windowEl.classList.remove('open');
-});
-
-    function placeIconsRandomly() {
-      const desktop = document.querySelector('.desktop');
-      const dock = document.querySelector('.dock');
-      const { width, height } = desktop.getBoundingClientRect();
-      const dockHeight = dock.offsetHeight + 35;
-      icons.forEach(icon => {
-        const x = Math.random() * (width - 70);
-        const y = 40 + Math.random() * (height - 70 - dockHeight);
-        icon.style.left = x + 'px';
-        icon.style.top = y + 'px';
-      });
-    }
-
-    placeIconsRandomly();
-    window.addEventListener('resize', placeIconsRandomly);
-
+    closeDockPopup();}});
+</script><script>
+   document.addEventListener('DOMContentLoaded', () => {
+  const icons = document.querySelectorAll('.icon');
+  const windows = document.querySelectorAll('.window');
+  const closeBtns = document.querySelectorAll('.window-close');
+  const desktop = document.querySelector('.desktop');
+  const dock = document.querySelector('.dock');
+  // Функція для випадкового розташування іконок
+  function placeIconsRandomly() {
+    const { width, height } = desktop.getBoundingClientRect();
+    const dockHeight = dock.offsetHeight + 35; 
     icons.forEach(icon => {
-      icon.addEventListener('click', () => {
-        windowImg.src = icon.dataset.img;
-        windowEl.style.display = 'flex';
-        setTimeout(() => windowEl.classList.add('open'), 10);
-      });
-
-      // Drag with mouse
-      icon.addEventListener('mousedown', e => {
-        const rect = icon.getBoundingClientRect();
-        const offsetX = e.clientX - rect.left;
-        const offsetY = e.clientY - rect.top;
-
-        function moveAt(event) {
-          let newX = event.clientX - offsetX;
-          let newY = event.clientY - offsetY;
-          const dock = document.querySelector('.dock');
-          const desktop = document.querySelector('.desktop');
-          const dockHeight = dock.offsetHeight + 20;
-          const { width, height } = desktop.getBoundingClientRect();
-          newX = Math.max(0, Math.min(width - rect.width, newX));
-          newY = Math.max(0, Math.min(height - rect.height - dockHeight, newY));
-          icon.style.left = newX + 'px';
-          icon.style.top = newY + 'px';
-        }
-
-        function onMouseMove(event) { moveAt(event); }
-
-        document.addEventListener('mousemove', onMouseMove);
-        document.addEventListener('mouseup', () => {
-          document.removeEventListener('mousemove', onMouseMove);
-        }, { once: true });
-      });
-
-      // Drag with touch
-      icon.addEventListener('touchstart', e => {
-        const touch = e.touches[0];
-        const rect = icon.getBoundingClientRect();
-        const offsetX = touch.clientX - rect.left;
-        const offsetY = touch.clientY - rect.top;
-
-        function moveAt(event) {
-          const t = event.touches[0];
-          let newX = t.clientX - offsetX;
-          let newY = t.clientY - offsetY;
-          const dock = document.querySelector('.dock');
-          const desktop = document.querySelector('.desktop');
-          const dockHeight = dock.offsetHeight + 20;
-          const { width, height } = desktop.getBoundingClientRect();
-          newX = Math.max(0, Math.min(width - rect.width, newX));
-          newY = Math.max(0, Math.min(height - rect.height - dockHeight, newY));
-          icon.style.left = newX + 'px';
-          icon.style.top = newY + 'px';
-        }
-
-        function onTouchMove(event) { moveAt(event); }
-
-        document.addEventListener('touchmove', onTouchMove);
-        document.addEventListener('touchend', () => {
-          document.removeEventListener('touchmove', onTouchMove);
-        }, { once: true });
-      });
-    });
-
-    closeBtn.addEventListener('click', () => {
-      windowEl.style.display = 'none';
-      windowEl.classList.remove('open');
-    });
-
-function openWindow() {
-  windowEl.style.display = 'flex';
-  requestAnimationFrame(() => {
-    const { innerWidth, innerHeight } = window;
-    const rect = windowEl.getBoundingClientRect();
-    windowEl.style.left = (innerWidth - rect.width)/2 + 'px';
-    windowEl.style.top  = (innerHeight - rect.height)/2 + 'px';
-  });
-}
-
-// Клік на іконку
-icons.forEach(icon => {
-  icon.addEventListener('click', () => {
-    imgEl.src = icon.dataset.img;
-    videoSource.src = icon.dataset.video;
-    videoEl.load();
-    videoEl.onloadedmetadata = () => videoEl.play();
-
-    windowEl.querySelector('.window-header span').textContent = icon.dataset.title;
-    windowEl.querySelector('.top-text').textContent = icon.dataset.top;
-    windowEl.querySelector('.bottom-text').textContent = icon.dataset.bottom;
-
-    openWindow();
-  });
-});
-
-// Закриття
-closeBtn.addEventListener('click', () => {
-  videoEl.pause();
-  windowEl.style.display = 'none';
-});
-    // Перетягування вікна за верхню панель (муха)
-windowHeader.addEventListener('mousedown', e => {
-  e.preventDefault();
-  const rect = windowEl.getBoundingClientRect();
-  const offsetX = e.clientX - rect.left;
-  const offsetY = e.clientY - rect.top;
-
-  function moveAt(event) {
-    let newX = event.clientX - offsetX;
-    let newY = event.clientY - offsetY;
-
-    const { innerWidth, innerHeight } = window;
-    newX = Math.max(0, Math.min(innerWidth - rect.width, newX));
-    newY = Math.max(0, Math.min(innerHeight - rect.height, newY));
-
-    windowEl.style.left = newX + 'px';
-    windowEl.style.top = newY + 'px';
-  }
-
-  function onMouseMove(event) { moveAt(event); }
-  document.addEventListener('mousemove', onMouseMove);
-  document.addEventListener('mouseup', () => {
-    document.removeEventListener('mousemove', onMouseMove);
-  }, { once: true });
-});
-
-// Перетягування на сенсорних пристроях
-windowHeader.addEventListener('touchstart', e => {
-  const touch = e.touches[0];
-  const rect = windowEl.getBoundingClientRect();
-  const offsetX = touch.clientX - rect.left;
-  const offsetY = touch.clientY - rect.top;
-
-  function moveAt(event) {
-    const t = event.touches[0];
-    let newX = t.clientX - offsetX;
-    let newY = t.clientY - offsetY;
-
-    const { innerWidth, innerHeight } = window;
-    newX = Math.max(0, Math.min(innerWidth - rect.width, newX));
-    newY = Math.max(0, Math.min(innerHeight - rect.height, newY));
-
-    windowEl.style.left = newX + 'px';
-    windowEl.style.top = newY + 'px';
-  }
-  function onTouchMove(event) { moveAt(event); }
-  document.addEventListener('touchmove', onTouchMove);
-  document.addEventListener('touchend', () => {
-    document.removeEventListener('touchmove', onTouchMove);
-  }, { once: true });
-});
+      const x = Math.random() * (width - 70);
+      const y = 40 + Math.random() * (height - 70 - dockHeight);
+      icon.style.left = x + 'px';
+      icon.style.top = y + 'px';
+    });}
+  // Викликаємо функцію одразу та при зміні розміру вікна
+  placeIconsRandomly();
+  window.addEventListener('resize', placeIconsRandomly);
+// Універсальна логіка перетягування для іконок та вікон
+function makeDraggable(element, handle) {
+  if (!handle) handle = element;
+  handle.style.touchAction = 'none';
+  handle.addEventListener('pointerdown', (e) => {
+    // Ігноруємо кліки на кнопці закриття
+    if (e.target.closest('.window-close')) {
+      e.stopPropagation();return;}
+    e.preventDefault();
+    // Отримуємо поточні координати, враховуючи Flexbox-центрування
+    const rect = element.getBoundingClientRect();
+    // Розраховуємо зміщення курсору
+    const offsetX = e.clientX - rect.left;
+    const offsetY = e.clientY - rect.top;
+    // Виводимо елемент з потоку Flexbox і робимо його фіксованим
+    element.style.position = 'fixed';
+    element.style.left = rect.left + 'px';
+    element.style.top = rect.top + 'px';
+    element.style.transform = '';
+    // Піднімаємо вікно на передній план
+    element.style.zIndex = 9999;
+    const onPointerMove = (ev) => {
+      let newX = ev.clientX - offsetX;
+      let newY = ev.clientY - offsetY;
+      // Обмежуємо рух, щоб вікно не виходило за межі екрану
+      const maxX = window.innerWidth - element.offsetWidth;
+      const maxY = window.innerHeight - element.offsetHeight; 
+      newX = Math.max(0, Math.min(maxX, newX));
+      newY = Math.max(0, Math.min(maxY, newY));
+      element.style.left = newX + 'px';
+      element.style.top = newY + 'px';};
+    const onPointerUp = () => {
+      document.removeEventListener('pointermove', onPointerMove);
+      document.removeEventListener('pointerup', onPointerUp);
+      element.style.zIndex = '';};
+    document.addEventListener('pointermove', onPointerMove);
+    document.addEventListener('pointerup', onPointerUp);});}
+  // Застосовуємо логіку перетягування
+  icons.forEach(icon => makeDraggable(icon));
+  windows.forEach(win => makeDraggable(win, win.querySelector('.window-header')));
+  // Логіка відкриття/закриття вікон
+  icons.forEach(icon => {
+    icon.addEventListener('click', () => {
+      const winId = icon.dataset.window;
+      const win = document.getElementById(winId);
+      if (win) {
+        win.classList.remove('closing');
+        win.style.display = 'flex';
+        requestAnimationFrame(() => win.classList.add('open'));}});});
+  closeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const win = btn.closest('.window');
+      win.classList.remove('open');
+      win.classList.add('closing');
+      setTimeout(() => {
+        win.style.display = 'none';
+        win.classList.remove('closing');
+      }, 300);});});});
+</script>
   </script>
 </body>
 </html>
