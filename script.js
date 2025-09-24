@@ -153,7 +153,46 @@ document.addEventListener('DOMContentLoaded', () => {
     photosWindow.style.display = 'flex';
     requestAnimationFrame(() => photosWindow.classList.add('open'));
   });
-
+function makeDraggable(element, handle) {
+    if (!handle) handle = element;
+    handle.style.touchAction = 'none';
+    handle.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('.window-close')) {
+        e.stopPropagation();return;}
+      e.preventDefault();
+      const rect = element.getBoundingClientRect();
+      const offsetX = e.clientX - rect.left;
+      const offsetY = e.clientY - rect.top;
+      element.style.position = 'fixed';
+      element.style.left = rect.left + 'px';
+      element.style.top = rect.top + 'px';
+      element.style.transform = '';
+      element.style.zIndex = 9999;
+      const onPointerMove = (ev) => {
+        let newX = ev.clientX - offsetX;
+        let newY = ev.clientY - offsetY;
+        const maxX = window.innerWidth - element.offsetWidth;
+        const maxY = window.innerHeight - element.offsetHeight;
+        newX = Math.max(0, Math.min(maxX, newX));
+        newY = Math.max(0, Math.min(maxY, newY));
+        element.style.left = newX + 'px';
+        element.style.top = newY + 'px';};
+      const onPointerUp = () => {
+        document.removeEventListener('pointermove', onPointerMove);
+        document.removeEventListener('pointerup', onPointerUp);
+        element.style.zIndex = '';};
+      document.addEventListener('pointermove', onPointerMove);
+      document.addEventListener('pointerup', onPointerUp);});}
+  icons.forEach(icon => makeDraggable(icon));
+  windows.forEach(win => makeDraggable(win, win.querySelector('.window-header')));
+  icons.forEach(icon => {
+    icon.addEventListener('click', () => {
+      const winId = icon.dataset.window;
+      const win = document.getElementById(winId);
+      if (win) {
+        win.classList.remove('closing');
+        win.style.display = 'flex';
+        requestAnimationFrame(() => win.classList.add('open'));}});});
   // Обробник закриття вікон
   closeBtns.forEach(btn => {
     btn.addEventListener('click', () => {

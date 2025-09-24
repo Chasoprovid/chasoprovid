@@ -116,15 +116,15 @@ body {
 
 @keyframes flyInCball2 {
   to {
-    transform: translate(0, -44vh);
+    transform: translate(0, -32vh);
     opacity: 1;
   }
 }
 
 @keyframes floatCball2 {
-  0%   { transform: translate(0, -44vh); }
-  50%  { transform: translate(0, -46vh); } /* трохи вище */
-  100% { transform: translate(0, -44vh); }}
+  0%   { transform: translate(0, -32vh); }
+  50%  { transform: translate(0, -33vh); } /* трохи вище */
+  100% { transform: translate(0, -32vh); }}
 
 @keyframes flyInCball3 {
   to {
