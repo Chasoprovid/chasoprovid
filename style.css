@@ -1,0 +1,414 @@
+/* CSS для всієї сторінки */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+}
+
+/* Анімація та фон */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('content/bg2.jpg') no-repeat center center / cover;
+  filter: blur(0px);
+  z-index: -2; /* Зменшуємо z-index, щоб елементи були поверх фону */
+}
+
+.ball-video {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60vw;
+  opacity: 0;
+  filter: blur(1px);
+  transform: translate(100%, -100%);
+  animation: flyInBall 4s ease-out forwards, floatBall 4s ease-in-out infinite;
+  animation-delay: 5s, 9s;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes flyInBall {
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes floatBall {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(0, -30px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Адаптація для мобільних пристроїв */
+@media (max-width: 768px) {
+  .ball-video {
+    display: none;
+  }
+}
+
+.welcome-img {
+  position: fixed;
+  top: 5vw;
+  left: 5vw;
+  width: 300px;
+  opacity: 0;
+  transform: translate(-80%, 0%);
+  animation: slideInWelcome 0.8s ease-out forwards;
+  animation-delay: 1.5s;
+  z-index: -1;
+}
+
+@keyframes slideInWelcome {
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+/* Анімації для кульок */
+.cball-img, .cball2-img, .cball3-img {
+  position: fixed;
+  bottom: 20px;
+  opacity: 0;
+  transform: translateY(120%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.cball-img {
+  right: 6vw;
+  width: 15vw;
+  animation: flyInCball 1.2s ease-out forwards, floatCball 4s ease-in-out infinite;
+  animation-delay: 3s, 4.3s;
+}
+
+.cball2-img {
+  left: 45vw;
+  width: 8vw;
+  animation: flyInCball2 1.2s ease-out forwards, floatCball2 4s ease-in-out infinite;
+  animation-delay: 3.5s, 4.8s;
+}
+.cball3-img {
+  left: 3vw;
+  width: 16vw;
+  animation: flyInCball2 1.2s ease-out forwards, floatCball2 4s ease-in-out infinite;
+  animation-delay: 4.5s, 5.8s;
+}
+
+@keyframes flyInCball {
+  to {
+    transform: translate(0, -20vh);
+    opacity: 1;
+  }
+}
+
+@keyframes floatCball {
+  0%   { transform: translate(0, -20vh); }
+  50%  { transform: translate(0, -23vh); } /* трохи вище */
+  100% { transform: translate(0, -20vh); }}
+
+@keyframes flyInCball2 {
+  to {
+    transform: translate(0, -44vh);
+    opacity: 1;
+  }
+}
+
+@keyframes floatCball2 {
+  0%   { transform: translate(0, -44vh); }
+  50%  { transform: translate(0, -46vh); } /* трохи вище */
+  100% { transform: translate(0, -44vh); }}
+
+@keyframes flyInCball3 {
+  to {
+    transform: translate(0, -20vh);
+    opacity: 1;
+  }
+}
+
+@keyframes floatCball {
+  0%   { transform: translate(0, -20vh); }
+  50%  { transform: translate(0, -23vh); } /* трохи вище */
+  100% { transform: translate(0, -20vh); }}
+/* Іконки на робочому столі */
+.desktop {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.icon {
+  position: absolute;
+  width: 60px;
+  aspect-ratio: 1/1;
+  text-align: center;
+  user-select: none;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.icon:hover img {
+  transform: scale(1.10);
+}
+
+.icon:hover::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(150%);
+  aspect-ratio: 1/1;
+  transform: translate(-50%, -50%);
+  border: 1px solid gray;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.icon .label {
+  margin-top: 4px;
+  font-size: 10px;
+  color: #eee;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+}
+
+/* Док-панель */
+.dock {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  padding: 12px 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(0.5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.dock-item {
+  position: relative;
+  width: clamp(7px, 10.2vw, 45px);
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.dock-item img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.dock-item:hover img {
+  transform: scale(1.3);
+}
+
+.dock-item .label {
+  display: none;
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2px 2px;
+  border-radius: 4px;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.dock-item:hover .label {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .dock {
+    gap: 8px;
+    padding: 4px 4px;
+  }
+  .dock-item img {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Вікна */
+@keyframes fadeInWindow {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeOutWindow {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.window {
+  opacity: 0;
+  display: none;
+  flex-direction: column;
+  width: 90%;
+  max-width: 500px;
+  height: 90vh;
+  background: #f0f0f0;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  /* Вікна позиціонуються відносно .desktop через JS */
+  position: absolute;
+}
+
+.window.open {
+  display: flex;
+  animation: fadeInWindow 0.3s ease forwards;
+}
+
+.window.closing {
+  animation: fadeOutWindow 0.3s ease forwards;
+}
+
+.window-header {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 12px;
+  background: #e0e0e0;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: grab;
+}
+
+.window-close {
+  position: absolute;
+  left: 12px;
+  width: 16px;
+  height: 16px;
+  background: #ff5c5c;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.window-content {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+}
+
+.window-content img,
+.window-content video {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.video-container {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.dock-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  width: 260px;
+  padding: 14px;
+  display: none;
+  z-index: 9999;
+  animation: fadeInScale 0.2s ease;
+}
+.dock-popup-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.dock-popup-close {
+  width: 14px;
+  height: 14px;
+  background: #ff5f57;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 8px;
+}
+.dock-popup-title {
+  font-weight: bold;
+  font-size: 14px;
+}
+.dock-popup-text {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.3;
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.photos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  padding: 12px;
+}
+
+.photo-slot {
+  background: #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
