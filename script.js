@@ -118,12 +118,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Обробник для попапів дока
+  // Обробник для елементів дока
   dock.addEventListener('click', e => {
     const item = e.target.closest('.dock-item');
-    if (!item || item.id === 'dockGallery') return;
+    if (!item) return;
+
+    // Перевіряємо, чи має елемент атрибут data-window
+    const winId = item.dataset.window;
+    if (winId) {
+      openWindow(winId);
+      return; // Зупиняємо виконання, щоб не показувати попап
+    }
       
-    // Показуємо попап для всіх елементів дока, крім галереї
+    // Показуємо попап для всіх інших елементів дока
     const title = item.getAttribute('data-title') || '';
     const text = item.getAttribute('data-text') || '';
     const img = item.getAttribute('data-img') || '';

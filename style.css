@@ -1,12 +1,9 @@
-/* CSS для всієї сторінки */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   height: 100vh;
   overflow: hidden;
-  background-color: #000;
-}
-
+  background-color: #000;}
 /* Анімація та фон */
 .background {
   position: fixed;
@@ -16,9 +13,7 @@ body {
   height: 100%;
   background: url('content/bg2.jpg') no-repeat center center / cover;
   filter: blur(0px);
-  z-index: -2; /* Зменшуємо z-index, щоб елементи були поверх фону */
-}
-
+  z-index: -2; /* Зменшуємо z-index, щоб елементи були поверх фону */}
 .ball-video {
   position: fixed;
   top: 0;
@@ -30,29 +25,19 @@ body {
   animation: flyInBall 4s ease-out forwards, floatBall 4s ease-in-out infinite;
   animation-delay: 5s, 9s;
   z-index: -1;
-  pointer-events: none;
-}
-
+  pointer-events: none;}
 @keyframes flyInBall {
   to {
     transform: translate(0, 0);
-    opacity: 1;
-  }
-}
-
+    opacity: 1;}}
 @keyframes floatBall {
   0% { transform: translate(0, 0); }
   50% { transform: translate(0, -30px); }
-  100% { transform: translate(0, 0); }
-}
-
+  100% { transform: translate(0, 0); }}
 /* Адаптація для мобільних пристроїв */
 @media (max-width: 768px) {
   .ball-video {
-    display: none;
-  }
-}
-
+    display: none;}}
 .welcome-img {
   position: fixed;
   top: 5vw;
@@ -62,16 +47,11 @@ body {
   transform: translate(-80%, 0%);
   animation: slideInWelcome 0.8s ease-out forwards;
   animation-delay: 1.5s;
-  z-index: -1;
-}
-
+  z-index: -1;}
 @keyframes slideInWelcome {
   to {
     transform: translate(0, 0);
-    opacity: 1;
-  }
-}
-
+    opacity: 1;}}
 /* Анімації для кульок */
 .cball-img, .cball2-img, .cball3-img {
   position: fixed;
@@ -79,66 +59,47 @@ body {
   opacity: 0;
   transform: translateY(120%);
   pointer-events: none;
-  z-index: -1;
-}
-
+  z-index: -1;}
 .cball-img {
   right: 6vw;
   width: 15vw;
   animation: flyInCball 1.2s ease-out forwards, floatCball 4s ease-in-out infinite;
-  animation-delay: 3s, 4.3s;
-}
-
+  animation-delay: 3s, 4.3s;}
 .cball2-img {
   left: 45vw;
   width: 8vw;
   animation: flyInCball2 1.2s ease-out forwards, floatCball2 4s ease-in-out infinite;
-  animation-delay: 3.5s, 4.8s;
-}
+  animation-delay: 3.5s, 4.8s;}
 .cball3-img {
   left: 3vw;
   width: 16vw;
   animation: flyInCball2 1.2s ease-out forwards, floatCball2 4s ease-in-out infinite;
-  animation-delay: 4.5s, 5.8s;
-}
-
+  animation-delay: 4.5s, 5.8s;}
 @keyframes flyInCball {
   to {
     transform: translate(0, -20vh);
-    opacity: 1;
-  }
-}
-
+    opacity: 1;}}
 @keyframes floatCball {
   0%   { transform: translate(0, -20vh); }
   50%  { transform: translate(0, -23vh); } /* трохи вище */
   100% { transform: translate(0, -20vh); }}
-
 @keyframes flyInCball2 {
   to {
     transform: translate(0, -32vh);
-    opacity: 1;
-  }
-}
-
+    opacity: 1;}}
 @keyframes floatCball2 {
   0%   { transform: translate(0, -32vh); }
   50%  { transform: translate(0, -33vh); } /* трохи вище */
   100% { transform: translate(0, -32vh); }}
-
 @keyframes flyInCball3 {
   to {
     transform: translate(0, -20vh);
-    opacity: 1;
-  }
-}
-
+    opacity: 1;}}
 @keyframes floatCball {
   0%   { transform: translate(0, -20vh); }
   50%  { transform: translate(0, -23vh); } /* трохи вище */
   100% { transform: translate(0, -20vh); }}
 /* Іконки на робочому столі */
-
 .desktop {
   position: relative;
   display: grid;
