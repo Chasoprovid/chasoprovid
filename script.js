@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const windows = document.querySelectorAll('.window');
   const closeBtns = document.querySelectorAll('.window-close');
   const desktop = document.querySelector('.desktop');
+  const dockGallery = document.getElementById('dockGallery');
+  const photosWindow = document.getElementById('photosWindow');
 
   // Функція для ледачого завантаження контенту у вікні
   function lazyLoadContent(windowElement) {
@@ -38,12 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Функція для відкриття вікна
   function openWindow(winId) {
+    console.log('Спроба відкрити вікно з ID:', winId);
     const win = document.getElementById(winId);
     if (win) {
+      console.log('Вікно знайдено:', winId);
       lazyLoadContent(win);
       win.classList.remove('closing');
-      win.style.display = 'flex';
+      win.style.setProperty('display', 'flex', 'important'); // Важливе виправлення
       requestAnimationFrame(() => win.classList.add('open'));
+    } else {
+      console.error('Помилка: Вікно не знайдено з ID:', winId);
     }
   }
 
@@ -112,29 +118,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Оновлений обробник для всіх елементів дока
+  // Обробник для попапів дока
   dock.addEventListener('click', e => {
     const item = e.target.closest('.dock-item');
-    if (!item) return;
-
-    // Якщо це іконка галереї, відкриваємо вікно з фото
-    if (item.id === 'dockGallery') {
-      openWindow('photosWindow');
-    } else {
-      // Інакше, показуємо попап
-      const title = item.getAttribute('data-title') || '';
-      const text = item.getAttribute('data-text') || '';
-      const img = item.getAttribute('data-img') || '';
+    if (!item || item.id === 'dockGallery') return;
       
-      dockPopupTitle.textContent = title;
-      dockPopupText.innerHTML = `<p>${text}</p>`;
+    // Показуємо попап для всіх елементів дока, крім галереї
+    const title = item.getAttribute('data-title') || '';
+    const text = item.getAttribute('data-text') || '';
+    const img = item.getAttribute('data-img') || '';
+    
+    dockPopupTitle.textContent = title;
+    dockPopupText.innerHTML = `<p>${text}</p>`;
 
-      if (img) {
-        dockPopupText.innerHTML += `<img src="${img}" style="width:100%;border-radius:6px;margin-top:8px;">`;
-      }
-      dockPopup.style.display = 'block';
+    if (img) {
+      dockPopupText.innerHTML += `<img src="${img}" style="width:100%;border-radius:6px;margin-top:8px;">`;
     }
+    dockPopup.style.display = 'block';
   });
+
 
   dockPopupClose.addEventListener('click', closeDockPopup);
   document.addEventListener('click', e => {
